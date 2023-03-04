@@ -1,9 +1,9 @@
 from ast import Break
 import cv2
 import numpy as np
-def dibujar(mask,color):
-  contornos,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-  for c in contornos:
+def dibujar(mask,color): #create def dinujar, whit the paramethers mask and color
+  contornos,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE) # in this part i made a code 
+  for c in contornos:          # that make the contour of thing
     area = cv2.contourArea(c)
     if area > 3000:
       M = cv2.moments(c)
@@ -14,7 +14,11 @@ def dibujar(mask,color):
       cv2.circle(frame,(x,y),7,(0,255,0),-1)
       cv2.putText(frame,'{},{}'.format(x,y),(x+10,y), font, 0.75,(0,255,0),1,cv2.LINE_AA)
       cv2.drawContours(frame, [nuevoContorno], 0, color, 3)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) #i used my wedcam in the test, in this part yo can change if you want to use a video, image or other cam
+
+"""create the paramthers that the program will recognize the colors and compared with the diferents 
+ shades that can have the same color in different cases of light or exposure
+ """
 azulBajo = np.array([94,80, 2],np.uint8)
 azulAlto = np.array([125,255,255],np.uint8)
 amarilloBajo = np.array([15,100,20],np.uint8)
